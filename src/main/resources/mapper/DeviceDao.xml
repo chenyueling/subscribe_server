@@ -1,0 +1,78 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chenyueling.subscribe.server.dao.DeviceDao">
+
+    <!-- Result maps describe the mapping between the columns returned
+   from a query, and the class properties.  A result map isn't
+   necessary if the columns (or aliases) match to the properties
+   exactly. -->
+    <resultMap id="DeviceResult" type="com.chenyueling.subscribe.server.entity.Device">
+        <result property="id" column="id"/>
+        <result property="imei" column="imei"/>
+        <result property="code" column="username"/>
+        <result property="lastLoginTime" column="lastLoginTime"/>
+        <result property="push_setting" column="push_setting"/>
+        <result property="createTime" column="createTime"/>
+        <association property="user"  column="user" select="com.chenyueling.subscribe.server.dao.UserDao.findById"  javaType="com.chenyueling.subscribe.server.entity.User" />
+    </resultMap>
+
+    <!-- Select with no parameters using the result map for Order class. -->
+    <select id="findById" resultMap="DeviceResult">
+        select * from tb_device where id = #{id}
+    </select>
+
+
+    <select id="getScrollData" resultMap="DeviceResult">
+        select * from tb_device order by ${sort} ${order}
+        limit #{start} , #{end}
+    </select>
+
+    <select id="getScrollDataCount" resultMap="DeviceResult">
+        select count(*) from tb_device
+    </select>
+
+    <select id="getScrollDataByUser" resultMap="DeviceResult">
+        select * from tb_device where user = #{user.id}  order by ${sort} ${order}
+        limit #{start} , #{end}
+    </select>
+
+    <select id="getScrollDataByUserCount" resultMap="DeviceResult">
+        select count(*) from tb_device where user = #{user.id}
+    </select>
+
+
+
+    <select id="findByIMEI" resultMap="DeviceResult">
+        select * from tb_device where imei = #{imei}
+    </select>
+
+    <select id="findByDeviceCode" resultMap="DeviceResult">
+        select * from tb_device where code = #{deviceCode}
+    </select>
+
+
+    <insert id="save" parameterType="com.chenyueling.subscribe.server.entity.Device" >
+      insert into tb_device (
+        id,
+        imei,
+        code,
+        lastLoginTime,
+        push_setting,
+        createTime,
+        user
+        )
+        values (
+        #{id}, #{imei}, #{code}, #{lastLoginTime},#{push_setting},#{createTime},#{user.id}
+        )
+    </insert>
+
+
+    <update id="update" parameterType="com.chenyueling.subscribe.server.entity.Device">
+        update tb_device set  lastLoginTime = #{device.lastLoginTime},
+        user = #{device.user.id}
+        where id = #{device.id}
+    </update>
+    
+</mapper>

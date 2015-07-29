@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+/* 这个 CSS 的样式是基于bootstrap 务必先导入bootstrap */
+
+/* 基本样式框 */
+.bs-box {
+  position: relative;
+  margin: 15px 0;
+  margin-left:20px;
+  padding: 39px 19px 14px;
+  *padding-top: 19px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  width:90%;
+}
+
+.bs-box:after {
+  content: "信息管理";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  color: #9da0a4;
+  -webkit-border-radius: 4px 0 4px 0;
+     -moz-border-radius: 4px 0 4px 0;
+          border-radius: 4px 0 4px 0;
+}

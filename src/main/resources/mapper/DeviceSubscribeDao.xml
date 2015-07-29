@@ -1,0 +1,81 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chenyueling.subscribe.server.dao.DeviceSubscribeServerDao">
+
+    <!-- Result maps describe the mapping between the columns returned
+   from a query, and the class properties.  A result map isn't
+   necessary if the columns (or aliases) match to the properties
+   exactly. -->
+    <resultMap id="DeviceSubscribeServerResult" type="com.chenyueling.subscribe.server.entity.DeviceSubscribeServer">
+        <result property="id" column="id"/>
+        <result property="createTime" column="createTime"/>
+        <association property="server" select="com.chenyueling.subscribe.server.dao.ServerDao.findById" column="server" javaType="com.chenyueling.subscribe.server.entity.Server"/>
+        <association property="device" select="com.chenyueling.subscribe.server.dao.DeviceDao.findById" column="device" javaType="com.chenyueling.subscribe.server.entity.Device"/>
+    </resultMap>
+
+
+    <select id="findById" resultMap="DeviceSubscribeServerResult">
+        select * from tb_subscribe_server where id = #{id}
+    </select>
+
+
+
+    <select id="findByDeviceServer" resultMap="DeviceSubscribeServerResult">
+        select * from tb_subscribe_server where device = #{deviceId} and server = #{serverId}
+    </select>
+
+
+       <!-- 无排序 subscribeServers-->
+        <select id="subscribeServers" resultMap="com.chenyueling.subscribe.server.dao.ServerDao.ServerResult" parameterType="com.chenyueling.subscribe.server.entity.Device">
+           select * from tb_server where id in (select server from  tb_subscribe_server where device = #{id} )
+        </select>
+
+   <!-- <select id="subscribeServers" resultMap="com.chenyueling.subscribe.server.dao.ServerDao.ServerResult" parameterType="com.chenyueling.subscribe.server.entity.Device">
+    SELECT
+    a.id as id,
+    a. NAME as name,
+    a.createTime as createTime,
+    a.token as token,
+    a.STATUS as status,
+    a.user as user,
+    a.tip as tip
+    FROM
+    tb_server a,
+    tb_subscribe_server b
+    WHERE
+    a.id IN (
+    SELECT
+    SERVER
+    FROM
+    tb_subscribe_server
+    WHERE
+    device = #{id}
+    ) and b.createTime = (select createTime from tb_subscribe_server WHERE server=a.id)
+    ORDER BY b.createTime DESC;
+    </select>-->
+
+
+
+    <insert id="save" parameterType="com.chenyueling.subscribe.server.entity.DeviceSubscribeServer">
+        insert into tb_subscribe_server (
+        id,
+        server,
+        device,
+        createTime
+        )
+        values (
+        #{id}, #{server.id}, #{device.id}, #{createTime}
+        )
+    </insert>
+
+    <delete id="delete" parameterType="com.chenyueling.subscribe.server.entity.DeviceSubscribeServer">
+        delete from tb_subscribe_server where id = #{deviceSubscribeServer.id}
+    </delete>
+
+
+
+
+
+</mapper>

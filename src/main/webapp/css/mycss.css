@@ -1,0 +1,99 @@
+.border_magic {
+     background-color: #1E1E1E;
+}
+
+content_gradient h3 {
+     font-size: 20px;
+     font-weight: 400;
+     line-height: 22px;
+     margin-bottom: 8px;
+}
+
+blockquote p {
+     border-left: 8px solid #E5E5E5;
+     color: #5A5A5A;
+     font-size: 15px;
+     line-height: 24px;
+     padding-left: 12px;
+     width: 80%;
+}
+
+.float_left {
+     float: left;
+     margin-right: 12px;
+}
+
+.float_right {
+     float: right;
+     margin-left: 12px;
+}
+
+content_gradient a.button, .pages, .current, .page, .nextpostslink {
+     background: -moz-linear-gradient(center top , #FFFFFF 7px, #E8E8E8 17px, #FFFFFF 32px) repeat scroll 0% 0% transparent;
+     border-radius: 4px 4px 4px 4px;
+     border: 1px solid #FBFBFB;
+     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+     color: #6E6E6E;
+     margin: 3px 0px;
+     padding: 4px 17px;
+     text-shadow: 1px 1px 0px #FFFFFF;
+}
+
+content_gradient a.button:hover {
+     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+     color: #4E4E4E;
+     outline: medium none;
+}
+
+.portfolio_three_columns img {
+     height: 155px;
+     margin-bottom: -5px;
+     width: 275px;
+}
+
+.box {
+     overflow: hidden;
+     position: relative;
+}
+
+.box .cover {
+     height: 140px;
+     left: 0px;
+     max-width: 430px;
+     position: absolute;
+     top: 400px;
+}
+
+.box .cover h3 {
+     color: #FFFFFF;
+     display: block;
+     font-weight: bold;
+     margin: 0px;
+     padding: 3px 6px;
+}
+
+.content .box .cover p {
+     background-color: #FFFFFF;
+     color: #1E1E1E;
+     display: block;
+     font-size: 12px;
+     line-height: 16px;
+     margin-top: 2px;
+     padding: 0px 6px;
+}
+
+.content_gradient .box .cover p {
+     background-color: #1E1E1E;
+     color: #FFFFFF;
+     display: block;
+     font-size: 12px;
+     line-height: 16px;
+     margin-top: 2px;
+     padding: 0px 6px;
+}
+.border_magic {
+    border: 1px solid #FFFFFF;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    margin: 3px 0 10px;
+    padding: 5px;
+}

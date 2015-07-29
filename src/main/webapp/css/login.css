@@ -1,0 +1,172 @@
+@CHARSET "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+
+/* Eric Meyer's Reset Stylesheet: http://www.865171.cn/ */
+
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+body {
+	line-height: 1;
+	color: black;
+	background: white;
+}
+ol, ul {
+	list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+
+html {
+    font-size: 100%;
+    height: 100%;
+    margin-bottom: 1px;
+}
+
+body#login {
+    background: url("../images/bg-login.gif") repeat scroll 0 0 #222222;
+    color: #FFFFFF;
+}
+body {
+    background: url("../images/bg-body.gif") repeat-y scroll left top #F0F0F0;
+    color: #555555;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+}
+#login-wrapper {
+    background: url("../images/bg-login-top.png") repeat-x scroll left top transparent;
+}
+
+element.style {
+    display: none;
+}
+#facebox {
+    left: 0;
+    position: absolute;
+    text-align: left;
+    top: 0;
+    z-index: 100;
+}
+#login-wrapper #login-top {
+    padding: 140px 0 50px;
+    text-align: center;
+    width: 100%;
+}
+h1 {
+    color: #FFFFFF;
+    font-family: Calibri,Helvetica,Arial,sans-serif;
+    font-size: 31px;
+    font-weight: bold;
+   
+    top: -1000px;
+}
+
+
+#login-wrapper #login-content {
+    margin: 0 auto;
+    text-align: left;
+    width: 300px;
+}
+#login-wrapper #login-content p {
+    padding: 0;
+	line-height: 1.6em;
+}
+.clear {
+    clear: both;
+}
+#login-wrapper #login-content label {
+    color: #FFFFFF;
+    float: left;
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 0;
+    width: 70px;
+}
+#login-wrapper #login-content input {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 0 none;
+    float: right;
+    margin: 0 0 20px;
+    width: 200px;
+}
+
+#login-wrapper #login-content p#remember-password {
+    float: right;
+}
+
+#login-wrapper #login-content p .button {
+    margin-top: 20px;
+    width: auto;
+}
+#login-wrapper #login-content input {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 0 none;
+    float: right;
+    margin: 0 0 20px;
+    width: 200px;
+}
+
+#login-wrapper #login-content p#remember-password input {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    float: none;
+    margin: 0 10px 0 0;
+    width: auto;
+}
+#login-wrapper #login-content p .button {
+    margin-top: 20px;
+    width: auto;
+}
+.button {
+    background: url("../images/bg-button-green.gif") repeat-x scroll left top #459300 !important;
+    border: 1px solid #459300 !important;
+    color: #FFFFFF !important;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 11px !important;
+    padding: 4px 7px !important;
+}
+
+.wg_input input{
+	height:20px;
+	background:#fff;
+	border: 1px solid #000;
+	padding:5px;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+}

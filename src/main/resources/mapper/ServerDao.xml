@@ -1,0 +1,114 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper  namespace="com.chenyueling.subscribe.server.dao.ServerDao">
+
+    <resultMap id="ServerResult"  type="com.chenyueling.subscribe.server.entity.Server">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="createTime" column="createTime"/>
+        <result property="token" column="token"/>
+        <result property="status" column="status"/>
+        <result property="token" column="token"/>
+        <result property="tip" column="tip"/>
+        <result property="audit" column="audit"/>
+        <association property="user"  column="user" select="com.chenyueling.subscribe.server.dao.UserDao.findById"   javaType="com.chenyueling.subscribe.server.entity.User" />
+    </resultMap>
+
+    <insert id="save" parameterType="com.chenyueling.subscribe.server.entity.Server" >
+        insert into tb_server(
+        id,
+        name,
+        createTime,
+        token,
+        status,
+        tip,
+        user,
+        audit
+        )
+        values (
+        #{id}, #{name}, #{createTime}, #{token}, #{status},#{tip},#{user.id},#{audit}
+        )
+    </insert>
+
+    <select id="findById" resultMap="ServerResult">
+        select * from tb_server where id = #{id}
+    </select>
+
+
+    <select id="findByToken" resultMap="ServerResult">
+        select * from tb_server where token = #{token}
+    </select>
+
+
+
+    <delete id="delete" parameterType="com.chenyueling.subscribe.server.entity.Server" >
+        delete tb_server where id = #{server.id}
+    </delete>
+
+    <update id="update">
+        update tb_server set name = #{server.name},
+        tip = #{server.tip} ,token = #{server.token},audit = #{server.audit}
+        where id = #{server.id}
+    </update>
+
+    <!-- if mybatis want to user oder by
+      it need pass parameter sort order get
+      whith ${}
+     -->
+
+    <select id="getScrollData" resultMap="ServerResult"  >
+       select * from tb_server
+       order by ${sort} ${order}
+       limit #{start} , #{end}
+    </select>
+
+
+    <select id="getScrollDataCount" resultType="Long"  >
+        select count(*) from tb_server
+    </select>
+
+    <select id="getScrollDataByAudit" resultMap="ServerResult"  >
+        select * from tb_server where audit = #{audit}
+        order by ${sort} ${order}
+        limit #{start} , #{end}
+    </select>
+
+    <select id="getScrollDataByAuditCount" resultType="Long"  >
+        select count(*) from tb_server where audit = #{audit}
+    </select>
+
+
+
+    <select id="getScrollDataByStatus" resultMap="ServerResult"  >
+        select * from tb_server where
+        status = #{status}
+        order by ${sort} ${order}
+        limit #{start} , #{end}
+    </select>
+
+    <select id="getScrollDataByUserAndStatus" resultMap="ServerResult"  >
+        select * from tb_server where
+        user = #{user.id} and status = #{status}
+        order by ${sort} ${order}
+        limit #{start} , #{end}
+    </select>
+
+    <select id="getScrollDataByUserCount" resultMap="ServerResult"  >
+        select count(*) from tb_server where
+        user = #{user.id}
+    </select>
+
+    <select id="getScrollDataByUser" resultMap="ServerResult"  >
+        select * from tb_server where
+        user = #{user.id}
+        order by ${sort} ${order}
+        limit #{start} , #{end}
+    </select>
+
+
+
+
+
+</mapper>

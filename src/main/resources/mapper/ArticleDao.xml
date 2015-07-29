@@ -1,0 +1,75 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chenyueling.subscribe.server.dao.ArticleDao">
+
+    <!-- Result maps describe the mapping between the columns returned
+   from a query, and the class properties.  A result map isn't
+   necessary if the columns (or aliases) match to the properties
+   exactly. -->
+    <resultMap id="ArticleResult" type="com.chenyueling.subscribe.server.entity.Article">
+        <result property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="url" column="url"/>
+        <result property="createTime" column="createTime"/>
+       <association property="server" select="com.chenyueling.subscribe.server.dao.ServerDao.findById" column="server" javaType="com.chenyueling.subscribe.server.entity.Server"/>
+    </resultMap>
+
+
+    <!-- Insert example, using the Order parameter class -->
+    <insert id="save" parameterType="com.chenyueling.subscribe.server.entity.Article">
+        insert into tb_article (
+        id,
+        title,
+        url,
+        createTime,
+        server
+        )
+        values (
+        #{id}, #{title}, #{url}, #{createTime},#{server.id}
+        )
+    </insert>
+
+    <select id="findByServer" resultMap="ArticleResult" parameterType="com.chenyueling.subscribe.server.entity.Server">
+        select * from tb_article where id = #{server.id}
+    </select>
+
+    <delete id="delete" parameterType="com.chenyueling.subscribe.server.entity.Article">
+        delete tb_article where id = #{article.id}
+    </delete>
+
+
+    <select id="findByDeviceCode" resultMap="ArticleResult">
+        select * from tb_article where server in (select server from tb_subscribe_server where device in (select id from tb_device where code = #{deviceCode})) order by ${sort} ${order}
+        limit #{start} , #{end}
+    </select>
+
+    <select id="findByDevice" resultMap="ArticleResult" >
+        select * from tb_article where server in (select server from tb_subscribe_server where device =  #{device.id}) order by ${sort} ${order}
+        limit #{start} , #{end}
+    </select>
+
+
+    <select id="getScrollData" resultMap="ArticleResult" >
+        select * from tb_article order by ${sort} ${order}
+        limit #{start} , #{end}
+    </select>
+
+
+    <select id="getScrollDataCount" resultType="Long" >
+        select count(*) from tb_article
+    </select>
+
+    <select id="getScrollDataByUser" resultMap="ArticleResult" >
+        select * from tb_article where server in (select server from tb_server where user =  #{user.id}) order by ${sort} ${order}
+        limit #{start} , #{end}
+    </select>
+
+
+    <select id="getScrollDataByUserCount" resultType="Long" >
+        select count(*) from tb_article where server in (select server from tb_server where user =  #{user.id})
+    </select>
+
+
+</mapper>

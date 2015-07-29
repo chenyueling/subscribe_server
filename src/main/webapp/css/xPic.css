@@ -1,0 +1,55 @@
+@CHARSET "UTF-8";
+
+/* jquery.xPic CSS */
+.image_cell {
+	width:150px;
+	height:150px;
+	border:1px solid silver;
+	overflow:hidden;
+	float: left;
+	margin: 8px;
+}
+.image_cell:hover {
+	border:3px solid #2F80DC;
+	height:146px;
+	width:146px;
+
+}
+.u_select {
+	border:3px solid #2F80DC;
+	height:146px;
+	width:146px;
+}
+.image_body {
+	height:134px;
+	width: 100%;
+	overflow: hidden;
+}
+.image_body a{
+	display: block;
+	height: 100%;
+	width: 100%;
+}
+.image_body img{	
+	display:block;
+	margin: auto auto;
+	
+}
+.image_info {
+	overflow:hidden;
+	height:17px;
+	text-align:center;
+	border-top:1px solid silver;
+}
+
+.image_cell .cover {
+     position: relative;
+     width: 100%;
+     height:30px;
+     background: black;
+}
+.image_cell .cover a {
+	color: white;
+	float: right;
+	margin-right: 10px;
+}

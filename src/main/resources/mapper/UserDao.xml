@@ -1,0 +1,86 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chenyueling.subscribe.server.dao.UserDao">
+
+    <!-- Result maps describe the mapping between the columns returned
+   from a query, and the class properties.  A result map isn't
+   necessary if the columns (or aliases) match to the properties
+   exactly. -->
+    <resultMap id="UserResult" type="com.chenyueling.subscribe.server.entity.User">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="createTime" column="createTime"/>
+        <result property="lastLoginTime" column="lastLoginTime"/>
+    </resultMap>
+
+    <!-- Select with no parameters using the result map for Order class. -->
+    <select id="selectUser" resultMap="UserResult">
+        select * from tb_user
+    </select>
+
+    <!-- Search conditions -->
+    <select id="whereUser" resultMap="UserResult">
+        select * from tb_user where ${where} = #{whereParam}
+    </select>
+
+    <select id="verifyExist" resultType="Long">
+        select count(*) from tb_user where ${where} = #{whereParam}
+    </select>
+
+
+    <!-- Insert example, using the Order parameter class -->
+    <insert id="save" parameterType="com.chenyueling.subscribe.server.entity.User">
+        insert into tb_user (
+        id,name,
+        username,
+        password,
+        email,
+        createTime, lastLoginTime
+        )
+        values (
+        #{id} , #{name},#{username}, #{password}, #{email}, #{createTime}, #{lastLoginTime}
+        )
+    </insert>
+
+    <!-- 当select 语句使用 * 表示查询出所有的属性,如果单一查询出某一属性,Mybatis 只会将返回的对象设置查询出来的属性 -->
+    <select id="findById"  resultType="com.chenyueling.subscribe.server.entity.User">
+        select * from tb_user where id = #{id}
+    </select>
+
+
+    <delete id="deleteById">
+        delete from tb_user where id = #{id}
+    </delete>
+
+    <select id="getScrollData" resultMap="UserResult"  >
+        select * from tb_user
+        order by ${sort} ${order}
+        limit #{start} , #{end}
+    </select>
+
+    <select id="getScrollDataCount" resultType="Long"  >
+        select count(*) from tb_user;
+    </select>
+
+
+     <update id="update" parameterType="com.chenyueling.subscribe.server.entity.User">
+        update tb_user set name =
+        #{user.name} ,
+        username = #{user.username} ,
+        password = #{user.password} ,
+        email = #{user.email},
+        createTime = #{user.createTime},
+        lastLoginTime = #{user.lastLoginTime}
+        where id = #{user.id}
+    </update>
+
+    <select id="login" resultType="com.chenyueling.subscribe.server.entity.User">
+        select * from tb_user where username = #{userName} and password = #{password}
+    </select>
+    
+</mapper>
